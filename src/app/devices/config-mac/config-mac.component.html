@@ -1,0 +1,28 @@
+<app-pop-out titleText='配置参数' (cancle)='cancle()' (confirm)="confirm()">
+  <div class="main">
+      <div class="item">
+          <label for="name">设备号:</label>
+          <input type="text" id="name" [(ngModel)]='mac.devno'>
+        </div>
+    <div class="item">
+      <label for="name">设备名:</label>
+      <input type="text" id="name" [(ngModel)]='mac.name'>
+    </div>
+    <div class="item">
+      <label for="ip">IP地址:</label>
+      <input type="text" id="ip" [(ngModel)]='mac.ip'>
+    </div>
+    <div class="item">
+      <label for="mac">MAC地址:</label>
+      <input type="text" id="mac" [(ngModel)]='mac.mac'>
+    </div>
+    <div class="item">
+      <label for="mask">子网掩码:</label>
+      <input type="text" id="mask" [(ngModel)]='mac.mask'>
+    </div>
+    <div class="item">
+      <label for="gateway">网光:</label>
+      <input type="text" id="gateway" [(ngModel)]='mac.gateway'>
+    </div>
+  </div>
+</app-pop-out>

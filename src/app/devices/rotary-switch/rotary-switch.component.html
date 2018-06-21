@@ -1,0 +1,14 @@
+<div class="left">
+  <div class="top">
+    <label for="">增益</label>
+    <app-num-input [(ngModel)]='currentValue' unit='db' (change)='inputChange($event)' [min]='min' [max]='max'></app-num-input>
+  </div>
+  <div class='radio_btn_out'>
+    <div class="radio_btn" (mousemove)='move($event)' (mousedown)='mouseDown($event)' (mouseup)='mouseUp($event)' [style.transform]='getAngleStyle(angle)'>
+      <div class="point"></div>
+    </div>
+    <li class="scale" *ngFor="let item of scales, let i = index" [style.transform]='getAngleStyle(i*13.5)'>
+      <b class="dotdot " [class.light]='(angle*20/270) > i || angle == 270'></b>
+    </li>
+  </div>
+</div>

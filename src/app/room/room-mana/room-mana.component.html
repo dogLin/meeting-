@@ -1,0 +1,80 @@
+<div class="room">
+  <!-- header -->
+  <div class="header">
+    <div class="title">
+      会议室列表
+    </div>
+
+    <div class="device">
+      <div>会议室设备</div>
+    </div>
+
+    <div class="right_btn">
+      <input type="text" class="search" placeholder="搜索会议室" (keyup)="applyFilter($event.target.value)" >
+      <button mat-button class="mana" [routerLink] = "['/room/add']" >
+        <i class="iconfont icon-add"></i>
+        <span>新增会议室</span>
+      </button>
+    </div>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="avatar">
+      <mat-header-cell *matHeaderCellDef> 会议室简图 </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div class="avatar" [style.background]="'url('+ element.avatar+ ')' "></div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> 会议室名称 </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="place">
+      <mat-header-cell *matHeaderCellDef> 地址 </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.place}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="host">
+      <mat-header-cell *matHeaderCellDef> 主机 </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+          <span *ngFor="let device of element.devices" class="device" matTooltip = '{{device}}' >主机</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="holdNums">
+      <mat-header-cell *matHeaderCellDef> 座位数 </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.holdNums}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="devices">
+      <mat-header-cell *matHeaderCellDef> 设备 </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="desc">
+      <mat-header-cell *matHeaderCellDef> 描述 </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.desc}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="opt">
+      <mat-header-cell *matHeaderCellDef> 操作 </mat-header-cell>
+      <mat-cell *matCellDef="let element, let i = index">
+        <button mat-icon-button>
+          <i class="iconfont icon-edit"  (click) = 'edit(element)'></i>
+          <!-- [routerLink] = "['/room/edit/',element]" -->
+        </button>
+        <button mat-icon-button (click) = 'deleteRoom(element,i)'>
+          <i class="iconfont icon-custom-delete"></i>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+</div>

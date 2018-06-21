@@ -1,0 +1,110 @@
+<div class="create">
+  <div class="item">
+    <label for="title">会议主题：*</label>
+    <input placeholder="请输入本次会议主题" type="text" [(ngModel)]='meeting.name'>
+  </div>
+  <div class="item">
+    <label>会议内容：</label>
+    <input placeholder="请输入本次会议内容" type="text" [(ngModel)]='meeting.desc'>
+  </div>
+  <div class="item">
+    <label>会议议题：</label>
+    <div class="issues">
+      <div *ngFor="let issue of meeting.issues, let i = index">
+        <input class="issue" placeholder="请输入会议议题" type="text" [(ngModel)]='issue.value'>
+        <i class="iconfont icon-guanbi" (click)='meeting.issues.splice(i,1)'></i>
+      </div>
+    </div>
+    <div>
+      <i class="iconfont icon-ic_add_circle_outline add" (click)='meeting.issues.push({})'></i>
+    </div>
+  </div>
+  <div class="item">
+    <label for="title">开始时间:</label>
+    <mat-form-field floatLabel='never' class="date">
+      <input matInput [matDatepicker]="picker" placeholder="选择日期" [(ngModel)]='day' [min]="minDay" (dateChange)='dateChange($event)'>
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <i matDatepickerToggleIcon class="iconfont icon-xia-copy"></i>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field floatLabel='never' class="start">
+      <mat-select placeholder="选择开始时间" [(ngModel)]='startTime' (change)='startChange($event)'>
+        <mat-option [value]="item" *ngFor="let item of beginTimeList">
+          {{item}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <span>持续到</span>
+    <mat-form-field floatLabel='never' class="chixu">
+      <mat-select placeholder="选择结束时间" [(ngModel)]='endTime' (change)='endChange($event)'>
+        <mat-option [value]="item" *ngFor="let item of endTimeList">
+          {{item}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+
+  <div class="item choose_label">
+    <label>选择会议室</label>
+    <!-- <input placeholder="搜索会议室名称" class="search"> -->
+  </div>
+  <div class="meeting_rooms item">
+    <div *ngIf="allRoomList?.length <= 0" class="none_room">
+      暂无可用会议室，请更换时间或者新建会议室
+    </div>
+    <button mat-icon-button class="left" (click)='preRoom()' *ngIf="allRoomList?.length > showNum">
+      <i class="iconfont icon-zuo"></i>
+    </button>
+    <!-- <div class="meet_room" [style.background] = '"url("+ +")"'>会议室1</div> -->
+
+    <app-room-avatar class="meet_room" *ngFor="let item of roomList" [room]='item' [class.selected]='item._id == meeting.meetingRoom'
+      (click)='changeRoom(item)'></app-room-avatar>
+
+
+    <div class="space"></div>
+    <button mat-icon-button (click)='nextRoom()' *ngIf="allRoomList?.length > showNum">
+      <i class="iconfont icon-you"></i>
+    </button>
+  </div>
+
+  <div class="item">
+    <label>参会人员：</label>
+    <button mat-button (click)='chooseUser()'>选择参会人员</button>
+    <div class="members_avatar">
+      <app-avatar *ngFor="let item of meeting.members" [src]='item?.avatar || item?.userId?.avatar' [matTooltip]='item?.name || item.userId?.name'
+        type='radio'></app-avatar>
+    </div>
+
+  </div>
+  <div class="allot" *ngIf="unitList.length > 0">
+    <label>发言单元分配：</label>
+    <div class="members" [sortablejs] = 'meeting.members'>
+        <div *ngFor="let men of meeting.members" class="sort_item">
+            <app-avatar [src]='men?.avatar || men?.userId?.avatar' [matTooltip]='men?.name || men?.userId?.name'
+            type='radio' [size] = '25'></app-avatar>
+            <span>{{men.name}}</span>
+          </div>
+    </div>
+    <div class="units" [sortablejs] = 'unitList'>
+        <div *ngFor="let unit of unitList" class="sort_item">
+           <i class="iconfont icon-maikefeng" style="color: #4693ff;font-size: 25px;"></i>
+           <span>{{unit.name}}{{unit.isRostrum?"主席台":''}}</span>
+           <i matTooltip = '拖拽排序' class="iconfont icon-kujialeqiyezhan_mohutuozhuaichicun" style="color: #4693ff;font-size: 25px;"></i>
+          </div>
+    </div>
+  </div>
+  <!-- <div class="item">
+    <label>会议私密:</label>
+    <mat-radio-group>
+      <mat-radio-button value="1">全部可见</mat-radio-button>
+      <mat-radio-button value="2">与会者可见</mat-radio-button>
+    </mat-radio-group>
+  </div> -->
+  <div class="create_confirm">
+    <button mat-button (click) = 'location.back()' class="cancle">取消</button>
+    <button mat-button (click)='create()' class="prim"> {{type == 'create'?"创建会议":"保存会议"}}</button>
+  </div>
+</div>

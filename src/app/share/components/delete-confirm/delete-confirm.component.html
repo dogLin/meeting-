@@ -1,0 +1,6 @@
+<app-pop-out [titleText] ="data.title || '删除确认'" (cancle) = "cancle()" (confirm) = 'confirm()'>
+  <div class="content">
+    <i class="iconfont icon-iconfontwenhao"></i>
+    <span></span>{{data.msg || "是否确认删除"}}?
+  </div>
+</app-pop-out>

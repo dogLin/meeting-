@@ -1,0 +1,12 @@
+<ul class="out">
+    <li class="menu" *ngFor="let menu of menuList" >
+      <button mat-button class="vertical_center" (click) = "toogleOpen(menu)" [class.select] = 'ifSelected(menu)' [class.border] = 'ifSelected(menu)'>
+        <!-- <div class="vertical_center"> -->
+              <i *ngIf="menu.icon" class="iconfont {{menu.icon}} font_30 mart_5"></i>
+              <span class="text">{{menu.value}}</span>
+              <i *ngIf="menu?.menus && menu.menus.length > 0" class="iconfont font_24 right" [class.icon-you] = '!menu._open' [class.icon-xia-copy] = 'menu._open'></i>
+        <!-- </div> -->
+      </button>
+      <app-nav *ngIf="menu?.menus && menu.menus.length > 0 && menu._open" [menuList]='menu.menus' (onMenuChange) = 'childChange($event)'></app-nav>
+    </li>
+  </ul>

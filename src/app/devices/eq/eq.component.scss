@@ -1,0 +1,208 @@
+.chart {
+    background: rgba(28, 28, 28, 1);
+    color: rgb(129, 227, 238);
+    color: rgb(25, 183, 207);
+    height: 400px;
+}
+
+
+
+.eq {
+    background: #1c1c1c;
+    height: 100%;
+    min-width: 1430px;
+    overflow: auto;
+    .header {
+        padding: 0 20px;
+        background: #1c1c1c;
+        height: 80px;
+        box-shadow: 6px 0px 6px rgba(0, 0, 0, 0.73);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        font-family: MicrosoftYaHei;
+        color: #B2BCBF;
+        label {
+            margin-right: 15px;
+        }
+        .tds {
+            border-radius: 5px;
+            box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.23);
+            margin-right: 20px;
+        }
+        .mute {
+            margin-right: 20px;
+            margin-top: -5px;
+        }
+        .outWay {
+            margin-right: 20px;
+        }
+    }
+    .content{
+      overflow: auto;
+      height: calc(100% - 90px);
+    }
+    .info {
+        font-size: 16px;
+        font-family: Adobe Heiti Std R;
+        color: rgba(70, 147, 255, 1);
+        display: flex;
+        padding: 0 20px;
+        align-items: center;
+        .item {
+            width: 100px;
+        }
+        .space_flex {
+            flex-grow: 1;
+        }
+        .reset {
+            background: #272B32;
+            border-radius: 1px;
+            box-shadow: 5px 0px 5px rgba(25, 28, 34, 0.23)
+        }
+    }
+}
+
+el-radio-button {
+    background: red;
+}
+
+.rd_out {
+    background: rgba(59, 63, 73, 1);
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.23);
+}
+
+.number {
+    background: rgba(24, 25, 29, 1);
+    opacity: 0.6;
+    border-radius: 4px;
+    box-shadow: 1px 0px 0px rgba(255, 255, 255, 0.1);
+    border: 0px;
+    height: 35px;
+    font-size:14px;
+    font-family:ArialMT;
+    color:rgba(49,229,163,1);
+    width: 80px;
+    // &::-webkit-inner-spin-button {
+    //     -webkit-appearance: none;
+    // }
+    &:focus{
+      outline: none;
+    }
+
+}
+
+.foot{
+  display: flex;
+  margin-bottom: 20px;
+  .left{
+    width: 350px;
+    flex-shrink: 0;
+    padding-left: 50px;
+    padding-top: 50px;
+  }
+  .right{
+    flex-grow: 1;
+    display: flex;
+    overflow-y: auto;
+    margin-right: 20px;
+    .item{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-right: 30px;
+      label{
+        font-size:18px;
+        font-family:MicrosoftYaHei;
+        color:rgba(240,252,255,1);
+        width: 40px;
+        display: inline-block
+      }
+    }
+  }
+}
+
+
+// 滚动条样式
+.eq::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 4px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 4px;
+}
+
+.eq::-webkit-scrollbar-thumb, *::-webkit-scrollbar-thumb{
+  /*滚动条里面小方块*/
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: rgb(70, 147, 255);
+}
+
+.eq::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+.border{
+  height:1px;
+  background:rgba(255,255,255,1);
+  opacity:0.11;
+  box-shadow:1px 0px 1px rgba(0,0,0,0.17)
+}
+.matrix{
+  display: flex;
+  .out{
+    font-size: 18px;
+    font-family: ArialMT;
+    color: rgba(158,163,176,1);
+    margin-left: 60px;
+    margin-right: 20px;
+    .out_item{
+      height: 32px;
+      line-height: 32px;
+      margin-bottom: 15px;
+
+    }
+    .space{
+      margin-bottom: 14px;
+    }
+  }
+  .rotary{
+    margin: 89px;
+    display: inline-block;
+  }
+}
+
+.in{
+  margin-right: 40px;
+  .label{
+    font-size:20px;
+    font-family:ArialMT;
+    color:rgba(158,163,176,1);
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .btn_toogle{
+    display: block;
+    width: 88px;
+    height: 32px;
+    background: #2D3039;
+    box-shadow: 0px 3px 3px 2px rgba(2, 2, 2, 0.16), inset 0px 1px 2px 0px rgba(125, 125, 125, 0.74);
+    font-size: 18px;
+    font-family: ArialMT;
+    color: #666A75;
+    line-height: 32px;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+}
+
+// @media only screen and (max-width: 500px) {
+//   .eq {
+//     background: #fff;
+//   }
+// }

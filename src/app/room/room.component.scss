@@ -1,0 +1,138 @@
+.room{
+  height: 100%;
+  background: #fff;
+  margin-right: 20px;
+  border-radius: 5px;
+  box-shadow:0px 0px 4px rgba(0,0,0,0.03);
+  .header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    height: 66px;
+    align-items: center;
+    .date_pick{
+      display: flex;
+      align-items: center;
+    }
+    .search{
+      width:200px;
+      height:38px;
+      background:rgba(241,242,247,1);
+      border-radius: 5px;
+      font-size:14px;
+      font-family:MicrosoftYaHei;
+      color:rgba(17,17,17,1);
+      border: 1px solid #f1f2f7;
+      padding-left: 10px;;
+      &:focus{
+        outline: none;
+      }
+    }
+
+    .mana{
+      height:38px;
+      background:rgba(70,147,255,1);
+      border-radius: 5px;
+      font-size:14px;
+      font-family:MicrosoftYaHei;
+      color:rgba(255,254,254,1)
+
+    }
+  }
+
+
+  $border-color: #f1f2f7;
+  .table_outer{
+    width:100%;
+    overflow: auto;
+  }
+  table{
+    width:100%;
+    border-collapse: collapse;
+
+    tr{
+      height: 60px;
+      border-top: 1px solid $border-color;
+      &:last-child{
+        border-bottom: 1px solid $border-color;
+      }
+      th,td{
+        text-align: center;
+        border-right: 1px solid $border-color;
+        &:last-child{
+          border-right: 0px solid $border-color;
+        }
+        &:first-child{
+          width: 180px;
+        }
+      }
+      td {
+        position: relative;
+
+        .meet{
+          position: absolute;
+          border-radius: 5px;
+          height: 50px;
+          top: 4px;
+          line-height: 50px;
+          font-size:12px;
+          font-family:MicrosoftYaHei;
+          color:rgba(255,254,254,1);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          z-index: 10
+        }
+
+      }
+      th{
+        font-size:18px;
+        font-family:MicrosoftYaHei;
+        color:rgba(51,51,51,1);
+        font-weight: normal;
+        min-width: 82px;
+      }
+    }
+    .device{
+      min-width:46px;
+      height:20px;
+      line-height: 20px;
+      text-align: center;
+      display: inline-block;
+      background:rgba(70,147,255,1);
+      border-radius: 10px ;
+      font-size:12px;
+      font-family:MicrosoftYaHei;
+      color:rgba(255,255,255,1);
+    }
+  }
+  .end{
+    background:rgba(70,147,255,1);
+  }
+  .ing{
+    background:rgba(254,113,86,1);
+  }
+  .feature{
+    background:rgba(43,204,192,1);
+  }
+  .desc{
+    display: flex;
+    align-items: center;
+    .item{
+      margin-right: 15px;
+      font-size:14px;
+      font-family:MicrosoftYaHei;
+      color:rgba(51,51,51,1);
+      margin: 20px;
+      display: flex;
+      align-items: center;
+      .status{
+        width:14px;
+        height:14px;
+        border-radius: 2px;
+        display: inline-block;
+        margin-right: 5px;
+      }
+    }
+  }
+}

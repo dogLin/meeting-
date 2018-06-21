@@ -1,0 +1,77 @@
+<div class="room">
+  <!-- header -->
+  <div class="header">
+    <div class="date_pick">
+      <button mat-icon-button (click) = 'preDay()'>
+        <i class="iconfont icon-zuo"></i>
+      </button>
+      <div>
+          <mat-form-field floatLabel='never'>
+              <input style='text-align:center' matInput [matDatepicker]="dp3" placeholder="选择日期" disabled [(ngModel)]='day' (dateChange)='dateChange()'>
+              <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+              <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+            </mat-form-field>
+      </div>
+      <button mat-icon-button (click) = 'nextDay()'>
+        <i class="iconfont icon-you"></i>
+      </button>
+    </div>
+
+    <div class="device">
+      <!-- <div>会议室设备</div> -->
+    </div>
+
+    <div class="right_btn">
+      <!-- <input type="text" class="search" placeholder="搜索会议室"> -->
+      <button mat-button class="mana" (click)='manaRoom()' *ngIf="user.isAdmin">
+        <i class="iconfont icon-dingwei"></i>
+        <span>会议室管理</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- table -->
+  <div class="table_outer">
+    <table>
+      <tr>
+        <th>会议室名称</th>
+        <th *ngFor="let time of timeList"> {{time}}</th>
+      </tr>
+      <tr *ngFor="let room of roomList">
+        <td>
+          <div>
+            <span>{{room.name}}</span>
+          </div>
+        </td>
+        <td>
+            <div *ngFor="let meet of room.meetings"
+            class="meet end"
+            [style.width]='meet.width'
+            [style.left] = 'meet.left'
+            matTooltip = '开始时间:{{format(meet.startTime,"HH:mm")}} &nbsp;结束时间:{{format(meet.endTime,"HH:mm")}} '
+            [style.background] = 'util.switchColor(meet)'
+            >{{meet.name}}</div>
+        </td>
+        <td *ngFor="let time of timeList.slice(1)"></td>
+      </tr>
+    </table>
+  </div>
+            <!-- [matTooltip] = ' "开始时间:" +format(meet.startTime,"HH:mm") +  " &#13;结束时间:" +format(meet.endTime,"HH:mm") + ' -->
+  <!-- status desc -->
+  <div class="desc">
+    <div class="item">
+      <span class="end status"></span>
+      <span>已结束</span>
+    </div>
+    <div class="item ">
+      <span class="ing status"></span>
+      <span>进行中</span>
+
+    </div>
+    <div class="item">
+      <span class="feature status"></span>
+      <span>已预约</span>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<app-pop-out titleText='发起表决' (cancle)='close()' (confirm)="close(vote)">
+  <div class="main">
+    <div class="ques">
+      <label for="">表决主题:</label>
+      <input type="text" placeholder="请输入题目详情" [(ngModel)]='vote.name'>
+    </div>
+    <div class="answer">
+      <div *ngFor="let item of vote.options;let i = index">
+        <label for="">选项{{i+1}}:</label>
+        <input type="text" placeholder="请输入选项{{i+1}}详情" [(ngModel)]="item.caption">
+      </div>
+    </div>
+  </div>
+</app-pop-out>

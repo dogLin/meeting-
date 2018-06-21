@@ -1,0 +1,186 @@
+.list-content {
+    height: 100%;
+    background: white;
+    display: flex;
+    margin-right: 20px;
+    .left {
+        width: 396px;
+        height: 100%;
+        .left-cal {
+            width: 100%;
+            margin-left: 20%;
+        }
+        .blueBlock {
+            border: 2px solid #4693FF;
+            margin-left: 20px;
+        }
+        .meeting-list::-webkit-scrollbar {
+            display: none
+        }
+        ;
+        .meeting-list {
+            height: calc(100% - 100px);
+            overflow-x: hidden;
+            overflow-y: scroll;
+            padding: 20px;
+            .meeting-item {
+                display: -webkit-box;
+                width: 274px;
+                height: 119px;
+                .meeting-time {
+                    width: 60px;
+                }
+                .meeting-line {
+                    position: relative;
+                    width: 1px;
+                    height: 119px;
+                    border-left: 1px dashed #333333;
+                    z-index: 1;
+                    left: 16px;
+                }
+                .right {
+                    display: -webkit-box;
+                    padding: 8px;
+                    .flagI {
+                        display: inline-flex;
+                        margin-top: 15px;
+                        .meeting-circle {
+                            border-radius: 50%;
+                            width: 16px;
+                            height: 16px;
+                            background: RGBA(107, 169, 255, 0.7);
+                            z-index: 2;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            .meeting-circle2 {
+                                border-radius: 50%;
+                                width: 8px;
+                                height: 8px;
+                                background: white;
+                                z-index: 2;
+                            }
+                        }
+                        .cardStyle-san {
+                            border-top: 8px solid rgba(0, 0, 0, 0);
+                            border-right: 8px solid RGBA(107, 169, 255, 0.7);
+                            border-bottom: 8px solid rgba(0, 0, 0, 0);
+                            border-left: 8px solid rgba(0, 0, 0, 0);
+                        }
+                    }
+                    .cardStyle {
+                        background: RGBA(107, 169, 255, 0.7);
+                        border-radius: 4px;
+                        height: 100%;
+                        display: flex;
+                        width: 180px;
+                        flex-direction: column;
+                        padding: 8px;
+                        p {
+                            margin: 0 !important;
+                            color: white !important;
+                            font-size: 14px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .right {
+        width: calc(100% - 396px);
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        .rightItem::-webkit-scrollbar {
+            display: none
+        }
+        .rightItem {
+            height: 100%;
+            margin-right: 30px;
+            display: flex;
+            border: 1px solid #FFDCDCDC;
+            padding: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            .rightItem-left {
+                // background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523876534272&di=d982b8cdd0f66cf966059047c12ff6b3&imgtype=0&src=http%3A%2F%2Fpic.35pic.com%2Fnormal%2F08%2F15%2F02%2F8006750_150727016394_2.jpg");
+                width: 248px;
+                height: 174px;
+                display: flex;
+                align-items: flex-end;
+                background-size: contain!important
+            }
+            .rightItem-right {
+                flex-grow: 1;
+                height: 174px;
+                background: white;
+                margin-left: 50px;
+                .member_div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-size: 14px;
+                    color: rgba(51, 51, 51, 1);
+                    .mem_avatars {
+                        margin-left: 20px;
+                        display: flex;
+                        align-items: center;
+                        app-avatar {
+                            position: relative;
+                            &:nth-child(1) {
+                                left: -15px;
+                            }
+                            &:nth-child(2) {
+                                left: -30px;
+                            }
+                            &:nth-child(3) {
+                                left: -45px;
+                            }
+                            &:nth-child(4) {
+                                left: -60px;
+                            }
+                        }
+                    }
+                }
+            }
+            .tag {
+              width: 78px;
+              height: 18px;
+              -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+              position: relative;
+              left: 25px;
+              top: -2px;
+              color: white;
+              font-size: 12px;
+              text-align: center;
+            }
+        }
+    }
+}
+app-room-avatar{
+  width: 248px;
+  height: 174px;
+  min-width: 248px;
+}
+.oper{
+  width: 80px;
+  .edit{
+    color:#4693FF;
+    cursor: pointer;
+  }
+}
+
+.none{
+  color: #aaa;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  letter-spacing: 13px;
+  margin-top: 150px;
+  i{
+    font-size: 65px;
+    margin-bottom: 10px;
+  }
+}

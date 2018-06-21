@@ -1,0 +1,50 @@
+.number {
+  background: rgba(24, 25, 29, 1);
+  opacity: 0.6;
+  border-radius: 4px;
+  box-shadow: 1px 0px 0px rgba(255, 255, 255, 0.1);
+  border: 0px;
+  height: 35px;
+  font-size:14px;
+  font-family:ArialMT;
+  color:rgba(49,229,163,1);
+  width: 80px;
+  box-shadow: inset 1px 1px 8px 0px rgb(0, 0, 0);
+  &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+  }
+  &:focus{
+    outline: none;
+  }
+
+}
+
+.unit{
+  color:rgba(49,229,163,1);
+}
+.button {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background:rgba(59,63,73,1);
+  box-shadow:1px 0px 2px rgba(25,28,34,1);
+  position: absolute;
+}
+
+.border{
+  position: relative;
+  display: inline-block;
+
+  .add{
+    top: 1px;
+    left: 63px;
+    z-index: 20;
+    color: #1E2026;
+  }
+  .sub{
+    top: 18px;
+    left: 63px;
+    z-index: 20;
+    color: #1E2026;
+  }
+}

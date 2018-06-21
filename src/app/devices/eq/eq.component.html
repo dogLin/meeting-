@@ -1,0 +1,87 @@
+<div class="eq">
+  <div class="header">
+    <!-- <dic class="title">
+
+    </dic> -->
+    <label for="">通道选择</label>
+    <div class="tds rd">
+      <el-radio-group>
+        <el-radio-button *ngFor="let out of outWays" [label]="out">{{out}}</el-radio-button>
+      </el-radio-group>
+    </div>
+    <mat-checkbox class="mute">靜音</mat-checkbox>
+    <label for="">输出方式</label>
+    <div class="outWay rd rd_out">
+      <el-radio-group>
+        <el-radio-button label="lin3">LINE</el-radio-button>
+        <el-radio-button label="mic">MIC</el-radio-button>
+      </el-radio-group>
+    </div>
+    <label for="">反馈抑制</label>
+    <div class="fankui rd rd_out">
+      <el-radio-group>
+        <el-radio-button label="Off">OFF</el-radio-button>
+        <el-radio-button label="l1">LEVEL1</el-radio-button>
+        <el-radio-button label="l2">LEVEL2</el-radio-button>
+      </el-radio-group>
+    </div>
+
+    <button (click) = 'typeChange()'>切换</button>
+  </div>
+  <div class="content" *ngIf="type !== 'matrix'">
+    <div class="info">
+      <div class="item">序号: {{eqBoard.showLineIndex || eqBoard.showLineIndex == 0?eqBoard.showLineIndex+1:''}}</div>
+      <div class="item"> 频率: {{section[eqBoard.showLineIndex]?section[eqBoard.showLineIndex][0].toFixed(2):""}}</div>
+      <div class="item">Q值: {{section[eqBoard.showLineIndex]?section[eqBoard.showLineIndex][3].toFixed(2):""}}</div>
+      <div class="item">增益: {{section[eqBoard.showLineIndex]?section[eqBoard.showLineIndex][1].toFixed(2):""}}</div>
+      <div class="space_flex"></div>
+      <button mat-button class='reset'>EQ复位</button>
+    </div>
+    <eq-board [section]='section' #eqBoard></eq-board>
+
+    <div class="foot">
+      <div class="left">
+        <app-rotary-switch [min]="min" [max]="max"></app-rotary-switch>
+      </div>
+      <div class="right">
+        <div class="item myslider" *ngFor="let item of section; let i = index">
+          <div class="marb_10">
+            <label for="" *ngIf="i == 0">增益</label>
+            <app-num-input min=-24 max=12 unit='db' [(ngModel)]='item[1]'  (change)='eqBoard.update()'></app-num-input>
+          </div>
+
+          <mat-slider vertical style="height:200px; width: 20px;left: 10px;" [(ngModel)]='item[1]' c lass="marb_10" max=12 min=-24
+            (change)='eqBoard.update()'></mat-slider>
+          <div class="marb_10">
+            <label for="" *ngIf="i == 0">频率</label>
+
+            <app-num-input unit='Hz' [(ngModel)]='item[0]' (change)='eqBoard.update()'></app-num-input>
+          </div>
+          <div>
+            <label for="" *ngIf="i == 0">Q值</label>
+            <app-num-input [(ngModel)]='item[3]'  (change)='eqBoard.update()'></app-num-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content" *ngIf="type == 'matrix'">
+    <div class="matrix">
+      <div class="out">
+        <div class="space">&nbsp;</div>
+        <div class="out_item" *ngFor="let out of outWays">
+          {{out}}
+        </div>
+      </div>
+      <div class="in" *ngFor="let matrix of matrixs,let i = index">
+        <div class="label">IN {{i+1}}</div>
+        <mat-button-toggle class="btn_toogle" *ngFor="let item of matrix,let i2 = index">0.0db</mat-button-toggle>
+      </div>
+      <div class="right">
+        <app-rotary-switch class="rotary"></app-rotary-switch>
+      </div>
+    </div>
+
+    <div class="border"></div>
+  </div>
+</div>

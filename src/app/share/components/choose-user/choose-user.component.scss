@@ -1,0 +1,52 @@
+$mainColor: #4693ff;
+.content{
+  display: flex;
+  height: 400px;
+  padding: 40px 0px;
+  .left {
+    width: 50%;
+    border-right: 1px solid #aaa;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    .all {
+      min-height: 40px;
+    }
+    .check_div{
+      display: flex;
+      align-items: center;
+    }
+    .item {
+      margin-left: 20px;
+      display: flex;
+      justify-content: space-between;
+      min-height: 40px;
+    }
+
+    .next{
+      cursor: pointer;
+    }
+  }
+  .right{
+    width: 50%;
+    overflow: auto;
+    .check_list {
+      display: flex;
+      flex-wrap: wrap;
+      .check{
+        border: 1px solid #4693ff;
+        border-radius: 50px;
+        color: #4693ff;
+        height: 30px;
+        line-height: 28px;
+        text-align: center;
+        min-width: 75px;
+        margin: 5px;
+        i{
+          position: relative;
+          top: 1px;
+        }
+      }
+    }
+  }
+}

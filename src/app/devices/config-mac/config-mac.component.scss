@@ -1,0 +1,17 @@
+.main{
+  margin-bottom: 10px;
+  .item {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    margin: 19px 70px 0 10px;
+    label{
+      width: 100px;
+      text-align: right;
+
+    }
+    input{
+      flex-grow: 1
+    }
+  }
+}

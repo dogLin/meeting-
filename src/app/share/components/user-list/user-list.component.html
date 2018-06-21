@@ -1,0 +1,18 @@
+<app-pop-out titleText = '与会人员详情' (cancle) = 'close()' (confirm) = 'close()'>
+    <div class="header">
+      <button mat-button (click) = 'members = allMembers'>全部{{allMembers?.length}}</button>
+      <button mat-button (click) = 'members = cofirmJoins'>参加{{cofirmJoins?.length}}</button>
+      <button mat-button (click) = 'members = unCofirmJoins'>未确认{{unCofirmJoins?.length}}</button>
+      <button mat-button (click) = 'members = signs'>签到{{signs?.length}}</button>
+      <button mat-button (click) = 'members = unSigns'>未签到{{unSigns?.length}}</button>
+
+    </div>
+    <div class="members">
+        <div *ngFor="let men of members" class="men">
+            <app-avatar [src] = 'men.userId.avatar' type = 'radio'></app-avatar>
+            <div class="name">{{men.userId.name}}</div>
+            <div class="join" [class.blue] = 'men.isJoin'>{{men.isJoin?"参加":"未确认"}}</div>
+            <div class="sign" [class.blue] = 'men.isSign'>{{men.isSign?"已签到":"未签到"}}</div>
+          </div>
+    </div>
+</app-pop-out>

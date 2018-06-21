@@ -1,0 +1,14 @@
+
+<div class="border">
+    <input type="number" class="number" [(ngModel)]='counterValue' (input)='onChange()'>
+    <span class="unit">
+      {{unit}}
+    </span>
+    <div class="button add">
+      <i class="iconfont icon-sanjiao_up_s" (click)='increment()'></i>
+    </div>
+    <div class="button sub">
+      <i class="iconfont icon-sanjiao_down_s" (click)='decrement()'></i>
+    </div>
+</div>
+

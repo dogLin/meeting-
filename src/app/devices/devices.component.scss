@@ -1,0 +1,128 @@
+.device{
+  margin-bottom: 20px;
+  background: #fff;
+  .name {
+    font-size: 18px;
+    margin-right: 30px;
+    .device_icon {
+      color: #4693ff;
+      font-size: 20px;
+      position: relative;
+      top: 1px;
+    }
+    .status{
+      width:48px;
+      height:24px;
+      background:rgba(91,203,145,1);
+      border-radius: 12px;
+      font-size:14px;
+      font-family:MicrosoftYaHei;
+      color:rgba(255,255,255,1);
+      display: inline-block;
+      text-align: center;
+      line-height: 24px
+    }
+  }
+
+  .mode{
+    margin-right: 70px;
+    position: relative;
+    top: 2px;
+  }
+  .space{
+    flex-grow: 1;
+  }
+  .header{
+    display: flex;
+    border-bottom: 1px solid #DCDCDC;
+    height: 80px;
+    align-items: center;
+    padding: 0 20px;
+    .btn_div{
+      .eq{
+        background:rgba(70,147,255,1);
+        border-radius: 3px;
+        color: #fff;
+        i{
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  .mac_list{
+    padding: 20px 20px 0px 40px;;
+    display: flex;
+    flex-wrap: wrap;
+    .mac{
+      width:272px;
+      height:150px;
+      background:rgba(255,255,255,1);
+      border-radius: 5px ;
+      border: 1px solid #DCDCDC;
+      margin-right: 20px;
+      margin-bottom: 20px;
+      padding: 15px;
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 25px;
+        i {
+          color: rgba(70,147,255,1);
+          font-size: 18px;
+        }
+        .status {
+          display: inline-block;
+          font-size: 12px;
+          background: #999595;
+          border-radius: 20px;
+          width: 35px;
+          height: 15px;
+          line-height: 15px;
+          text-align: center;
+          position: relative;
+          top: -5px;
+          color: #fff;
+        }
+        .onLine{
+          background: rgba(70,147,255,1);
+        }
+      }
+      .footer{
+        margin-top: 30px;
+      }
+      .conf{
+        display: inline-block;
+        font-size: 16px;
+        font-family: MicrosoftYaHei;
+        color: rgba(70,147,255,1);
+        cursor: pointer;
+        i{
+          font-size: 22px;
+          font-weight: bold;
+          /* margin-top: 6px; */
+          position: relative;
+          top: 2px;
+        }
+      }
+    }
+  }
+  .footer{
+    .appoint{
+      cursor: pointer;
+      color:#AAAAAA
+    }
+    .con_main{
+      color: rgba(70,147,255,1);
+    }
+  }
+  .tone{
+    mat-select{
+      width: 100px;
+    }
+    mat-slider{
+      width: 120px;
+    }
+  }
+
+}

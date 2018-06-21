@@ -1,0 +1,123 @@
+.edit {
+    height: 100%;
+    background: #fff;
+    margin-right: 20px;
+    header {
+        height: 60px;
+        line-height: 60px;
+        padding-left: 20px;
+        font-size: 18px;
+        font-family: MicrosoftYaHei;
+        color: rgba(51, 51, 51, 1);
+        border-bottom: 1px solid #f1f2f7
+    }
+    main {
+        padding: 30px 150px;
+        .item {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            .chooseUser{
+              flex-shrink: 0;
+              flex-shrink: 0;
+              background: #4693ff;
+              color: #fff;
+            }
+            label {
+                font-size: 18px;
+                font-family: MicrosoftYaHei;
+                color: #333333;
+                width: 160px;
+                display: inline-block;
+                margin-right: 10px;
+                text-align: right;
+                flex-shrink: 0;
+            }
+            input[type='text'],
+            input[type='number'] {
+                height: 48px;
+                background: rgba(255, 255, 255, 1);
+                border-radius: 4px;
+                border: 1px solid RGBA(191, 191, 191, 1);
+                padding-left: 20px;
+                font-size: 16px;
+                font-family: MicrosoftYaHei;
+                color: #494848;
+                flex-grow: 1;
+            }
+            input[type='number'] {
+                // &::-webkit-textfield-decoration-container {
+                //     -webkit-appearance: none;
+                // }
+                &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                }
+                &::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    /* 有无看不出差别 */
+                }
+            }
+            textarea {
+                flex-grow: 1;
+            }
+            mat-radio-button,
+            .start {
+                margin-right: 30px;
+                height: 50px;
+                font-size: 16px;
+                line-height: 50px;
+            }
+            .date {
+                margin-right: 40px;
+            }
+            .chixu {
+                margin-left: 40px;
+            }
+            .device {
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .host {
+                flex-grow: 1;
+            }
+            .types {
+                flex-grow: 1;
+            }
+            .add_avatar {
+                width: 70px;
+                height: 70px;
+                background: rgba(255, 255, 255, 1);
+                border-radius: 3px;
+                border: 1px solid #a9a9a9;
+                line-height: 70px;
+                text-align: center;
+                i {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+    footer {
+        text-align: center;
+        margin-bottom: 20px;
+        .prim {
+            height: 50px;
+            background: rgba(70, 147, 255, 1);
+            border-radius: 5px;
+            font-size: 18px;
+            font-family: MicrosoftYaHei;
+            color: rgba(255, 255, 255, 1);
+        }
+        .cancle{
+          background: #bbb;
+          border-radius: 5px;
+          height: 50px;
+        }
+    }
+}
+
+el-checkbox{
+  font-size: 16px;
+}

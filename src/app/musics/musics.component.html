@@ -1,0 +1,87 @@
+<div class="music">
+
+  <div class="play_bord">
+    <app-avatar size='135'></app-avatar>
+    <div class="mid">
+      <div class="music_name">
+        {{currentMusic.name}}
+      </div>
+      <span class="time">1:30/{{currentMusic.time}}</span>
+      <div class="progress">
+        <mat-slider style="width: 100%"></mat-slider>
+      </div>
+    </div>
+    <div class="right">
+      <div class="play_ctl">
+        <i class="iconfont icon-skip-previous pre_next"></i>
+        <button mat-fab class="playing">
+          <i class="iconfont icon-play " style="font-size: 30px"></i>
+        </button>
+        <i class="iconfont icon-skip-next-copy pre_next"></i>
+      </div>
+      <div class="volume_div">
+        <i class="iconfont icon-volume"></i>
+        <mat-slider class="volume" [(ngModel)]='volume'></mat-slider>
+        <span>{{volume}}%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="list_title">
+    <span>音乐列表</span>
+    <div class="right">
+      <input type="text" placeholder="搜索音乐关键词" (keyup) = 'filter($event.target.value)'>
+      <button mat-button>
+        <i class="iconfont icon-upload"></i>
+        上传文件
+      </button>
+    </div>
+  </div>
+
+  <div class="music_list">
+    <mat-table #table [dataSource]='dataSource'>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> 歌曲</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="singer">
+        <mat-header-cell *matHeaderCellDef style="flex: 0.5"> 歌手</mat-header-cell>
+        <mat-cell *matCellDef="let element" style="flex: 0.5"> {{element.singer}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="bit">
+        <mat-header-cell *matHeaderCellDef style="flex: 0.6">比特率</mat-header-cell>
+        <mat-cell *matCellDef='let music' style="flex: 0.6"> {{music.bit}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="time">
+        <mat-header-cell *matHeaderCellDef style="flex: 0.5">时长</mat-header-cell>
+        <mat-cell *matCellDef='let music' style="flex: 0.5"> {{music.time}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="size">
+        <mat-header-cell *matHeaderCellDef style="flex: 0.5">文件大小</mat-header-cell>
+        <mat-cell *matCellDef='let music' style="flex: 0.5"> {{music.size}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef style="flex: 0.7">创建时间</mat-header-cell>
+        <mat-cell *matCellDef='let music' style="flex: 0.7"> {{music.date}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="oper">
+        <mat-header-cell *matHeaderCellDef style="flex: 0.8">操作</mat-header-cell>
+        <mat-cell *matCellDef='let music' style="flex: 0.8"> 操作</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+
+  </div>
+
+
+</div>

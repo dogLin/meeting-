@@ -1,0 +1,95 @@
+<div class="home">
+  <div class="meetings">
+    <div class="meeting">
+      <div class='icon' style="background: #2BCCC0" [routerLink] = '["/meeting","预约"]'>
+        <i class="iconfont icon-9" ></i>
+      </div>
+      <div class="text">
+        <div class='num'>{{type.sub}}</div>
+        <div>已预约</div>
+      </div>
+    </div>
+    <div class="meeting">
+      <div class='icon' style="background: #FE7156" [routerLink] = '["/meeting","进行中"]'>
+        <i class="iconfont icon-hourglass" ></i>
+      </div>
+      <div class="text">
+        <div class='num'>{{type.ing}}</div>
+        <div>进行中</div>
+      </div>
+    </div>
+    <div class="meeting">
+      <div class='icon' style="background: #4693FF" [routerLink] = '["/meeting","已结束"]'>
+        <i class="iconfont icon-yijieshu"></i>
+      </div>
+      <div class="text">
+        <div class='num'>{{type.end}}</div>
+        <div>已结束</div>
+      </div>
+    </div>
+    <div class="meeting">
+      <div class='icon' style="background: #F9C22D" [routerLink] = '["/meeting","未进行"]'>
+        <i class="iconfont icon-qunfengguoqi"></i>
+      </div>
+      <div class="text">
+        <div class='num'>{{type.cancle}}</div>
+        <div>未进行</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="totay_title">
+    <div>今日会议</div>
+    <div class="more" [routerLink] = '["/meeting"]'>
+      更多>
+    </div>
+  </div>
+  <div class="today">
+    <div class="meet" *ngFor="let meet of meetingList">
+      <div class="space"></div>
+      <div class="title">
+        {{meet.name}}
+      </div>
+      <div class="address">
+        <i class="iconfont icon-dingwei"></i> {{meet.meetingRoom.name}}
+      </div>
+      <div class="host">
+        <app-avatar [src]='meet.starter.userId.avatar' type='radio' size='70'></app-avatar>
+        <div class='host_info'>
+          <div class="name">{{meet.starter.userId.name}}</div>
+          <div class="label">发起人</div>
+          <div class="time">{{meet.startTime | date:'MM-dd HH:mm'}}</div>
+        </div>
+      </div>
+      <div class="members">
+        <div class="confirm_div">
+          <div class="confirm">{{meet.confirmLength}}人确认参加</div>
+          <div class="disconfirm">{{meet.unConfirmLength}}人未响应</div>
+        </div>
+        <div class="member_div">
+          <div class="mem_avatars">
+            <div class="app_avatar" *ngFor="let item of meet.members, let i = index">
+                <app-avatar *ngIf='i <= 6' [src]='item.userId.avatar' type='radio' size='39' [matTooltip] = 'item.userId.name'>
+                </app-avatar>
+            </div>
+          </div>
+
+          <div  (click) = 'showUsers(meet._id)' style="cursor: pointer">更多</div>
+        </div>
+      </div>
+      <div class="footer" [routerLink] = '["/meeting/detail", meet._id]'>
+        查看详情
+      </div>
+    </div>
+
+    <div class=" meet add_meet" [routerLink] = '["/create"]'>
+        <div class="add">
+          <i class="iconfont icon-ic_add_circle_outline"></i>
+          <div>
+            新增会议
+          </div>
+        </div>
+      </div>
+  </div>
+
+</div>

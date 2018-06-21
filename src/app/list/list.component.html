@@ -1,0 +1,101 @@
+<div class="list-content">
+  <!-- left -->
+  <div class="left">
+    <div class="left-cal">
+      <mat-form-field floatLabel='never'>
+        <input matInput [matDatepicker]="dp3" placeholder="选择日期" disabled [(ngModel)]='day' (dateChange)='dateChange($event)'>
+        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>
+      <span class="blueBlock"></span>
+      <span>日程安排</span>
+    </div>
+    <div class="meeting-list">
+        <div *ngIf="journeyList.length == 0" class="none">
+            <i class="iconfont icon-Null-data"></i>
+            <span>暂无行程</span>
+          </div>
+      <div class="meeting-item" *ngFor="let item of journeyList">
+        <div class="meeting-time">
+          <p style="color: #AAAAAA">{{item.startTime | date: "MM/dd"}}</p>
+          <p [style.color]="switchColor(item)">{{item.startTime | date: "HH:mm:ss"}}</p>
+        </div>
+        <div class="meeting-line"></div>
+        <div class="right">
+          <div class="flagI">
+            <div class="meeting-circle" [style.background]="switchColor(item)">
+              <div class="meeting-circle2"></div>
+            </div>
+            <div class="cardStyle-san" [style.border-right-color]="switchColor(item)"></div>
+          </div>
+          <div class="cardStyle" [style.background]="switchColor(item)">
+            <p style="border-bottom: 1px dashed white">
+              {{item.name}}
+            </p>
+            <p>
+              发起人：{{item.starter.name}}
+            </p>
+            <P>
+              会议时间：{{item.startTime | date: "HH:mm:ss"}}
+            </P>
+            <p>
+              会议地址：{{item.meetingRoom.name}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- right -->
+  <div class="right">
+    <mat-tab-group style="width: 100%" (selectedIndexChange) = 'tabChange($event)' [selectedIndex] = selectedIndex >
+      <!-- 已预约 -->
+      <mat-tab [label]="type" *ngFor="let type of types"  style="flex:1">
+        <mat-list style="flex:1" >
+          <div *ngIf="showList.length == 0" class="none">
+            <i class="iconfont icon-Null-data"></i>
+            <span>暂无{{type}}会议</span>
+          </div>
+          <div class="rightItem " *ngFor="let item of showList">
+            <app-room-avatar [room] = 'item.meetingRoom'>
+
+            </app-room-avatar>
+            <div class="rightItem-right">
+              <p style="font-size: 26px;color: #333333;margin: 0">会议主题：{{item.name}}</p>
+              <p style="font-size: 16px;color: #333333;">会议时间：{{item.startTime | date: "yyyy-MM-dd HH:mm:ss"}} {{item.minute}}分钟</p>
+              <P style="font-size: 16px;color: #333333;">发起人：{{item.starter.userId.name}} 参会人数：{{item.confirmLength}}/{{item.members.length}}人 确认</P>
+              <div class="member_div">
+                <div class="mem_avatars" >
+                  <div class="app_avatar" *ngFor="let men of item.members, let i = index">
+                      <app-avatar [src]='men.userId.avatar' type='radio' size='39' *ngIf="i < 5" [matTooltip] = 'men.userId.name'>
+                      </app-avatar>
+                  </div>
+                  <div style="font: size 16px;color: #4693FF; cursor: pointer" (click) = 'pop.openMeetMembersDialog(item._id)' >更多</div>
+                </div>
+              </div>
+            </div>
+            <div class="oper">
+              <div class="edit" *ngIf="item.isStarter && (item.status == '预约' || item.status == '进行中')" [routerLink] = '["/create", item._id]'>
+                <i class="iconfont icon-edit"></i>
+                <span>编辑</span>
+              </div>
+              <div class="edit" style='color:red' *ngIf="item.isStarter && item.status !== '进行中'" (click) = 'deleteMeet(item)'>
+                <i class="iconfont icon-custom-delete"></i>
+                <span>删除</span>
+              </div>
+              <button mat-button *ngIf="!item?.userStatus.isJoin && item?.status == '预约'" (click) = 'meetService.joinMeet(item)'>
+                <i class="iconfont icon-edit"></i>
+                <span>确认参加</span>
+              </button>
+              <div style="font: size 16px;color: #4693FF; cursor: pointer" [routerLink]='["/meeting/detail", item._id]'>查看详情</div>
+            </div>
+            <div class="tag" [style.background]="switchColor(item)">{{item.status}}</div>
+          </div>
+        </mat-list>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

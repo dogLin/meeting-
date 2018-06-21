@@ -1,0 +1,29 @@
+<div class="manage">
+  <header>
+    <app-header></app-header>
+  </header>
+  <main>
+    <nav>
+      <div class="user">
+        <div class="img" [style.background]="'url('+ user.avatar+')'">
+        </div>
+        <div class="info">
+          <div class="name">{{user.name}}</div>
+          <div class="role">{{user.isAdmin?"管理员":"员工"}}</div>
+        </div>
+        <div>
+          <button mat-icon-button class="exit" (click)='logOut()'>
+            <i class="iconfont icon-exit" matTooltip="注销"></i>
+          </button>
+        </div>
+      </div>
+      <div class="app-nav">
+        <app-nav  (onMenuChange)='menuChange($event)'></app-nav>
+      </div>
+    </nav>
+    <div class="right">
+      <div class="title">{{title}}</div>
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

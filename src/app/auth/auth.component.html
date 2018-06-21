@@ -1,0 +1,29 @@
+<div class="login">
+  <div>
+    <img class = 'bg_image' src="./images/bg@3x.png" alt="">
+    <div style="position: relative">
+      <div class="logo_div">
+        <img src="./images/logo@2x.png" alt="">
+        <div class="font1">CVI会议管理系统</div>
+        <div class="font2"> CONFERENCE MANAGEMENT SYSTEM</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="login_box">
+    <div>
+      <div class="item">
+          <input type="text" placeholder="账号" [(ngModel)] = 'userName'>
+          <i class="iconfont icon-user"></i>
+      </div>
+      <div class="item">
+          <input type="password" placeholder="密码" [(ngModel)] = 'pass'>
+          <i class="iconfont icon-msnui-lock"></i>
+      </div>
+      <button  class="button" mat-button (click) = "login()">登&nbsp;&nbsp;录</button><br>
+    </div>
+    <div class="footer">
+        Copyright © 2017-2018 inc zhongxieSoftware Technology Co. Ltd, all rights reserved
+    </div>
+  </div>
+</div>

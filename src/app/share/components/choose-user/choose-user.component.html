@@ -1,0 +1,29 @@
+<app-pop-out titleText='选择人员' (cancle)='cancle()' (confirm)="confirm()">
+  <div class="content">
+    <div class="left">
+      <div (click)='reInit()'>返回</div>
+      <!-- <mat-checkbox class="marl_20 all">全选</mat-checkbox> -->
+      <div class="item " *ngFor="let dept of showList">
+        <mat-checkbox  (change)='checkChange($event,dept)' [(ngModel)]='dept.checked'>
+          <div class="check_div">
+              <app-avatar class="marr_10" [src] = 'dept.avatar' *ngIf="dept.avatar" type = 'radio' size='35'></app-avatar>
+              <div>{{dept.name}}</div>
+          </div>
+        </mat-checkbox>
+        <div (click)='next(dept)' class="next" *ngIf="dept?.members?.length > 0 || dept?.children?.length > 0" [class.disabled] = 'dept.checked'>
+          <i class="iconfont icon-jiegou"></i>
+          <span>下级</span>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <div>选中列表</div>
+      <div class="check_list">
+        <div class="check" *ngFor="let item of checkList" >
+          <span >{{item.name}}</span>
+          <i class="iconfont icon-msnui-close" (click) = 'cancleCheck(item)'></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-pop-out>

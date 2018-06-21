@@ -1,0 +1,93 @@
+.music {
+    font-family: MicrosoftYaHei;
+    .play_bord {
+        height: 188px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        padding: 0 30px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.03);
+        .mid {
+            flex: 1;
+            position: relative;
+            margin-right: 100px;
+            margin-left: 20px;
+            height: 100%;
+            padding-top: 35px;
+            .music_name {
+                font-size: 24px;
+                color: rgba(51, 51, 51, 1);
+            }
+            .time {
+                position: absolute;
+                right: 10px;
+                top: 35px;
+                color: #4694FF;
+                font-size: 18px;
+            }
+            .progress {
+                background: url(/images/music_bc.png);
+                height: 97px;
+                mat-slider {
+                    position: relative;
+                    top: 37px;
+                }
+            }
+        }
+        .right {
+            width: 400px;
+            text-align: center;
+            .play_ctl {
+                .playing {
+                    background: #fff;
+                    color: #4694FF;
+                    box-shadow: 0px 4px 17px 3px #4694ff33;
+                    width: 65px;
+                    height: 65px;
+                    margin: 0 20px;
+                }
+                .pre_next {
+                    font-size: 35px;
+                    color: #4693ff;
+                    position: relative;
+                    top: 10px;
+                }
+            }
+            .volume_div {
+                color: #888;
+                margin-top: 5px;
+                i {
+                    font-size: 20px;
+                    position: relative;
+                    top: 2px;
+                }
+                .volume {
+                    width: 320px;
+                }
+            }
+        }
+    }
+    .list_title {
+        margin: 50px 0 30px 0;
+        font-size: 24px;
+        font-family: MicrosoftYaHei;
+        color: rgba(51, 51, 51, 1);
+        display: flex;
+        justify-content: space-between;
+        input {
+            background: rgba(255, 255, 255, 0);
+            &:focus {
+                outline: none;
+            }
+        }
+        button {
+            background: rgba(210, 210, 210, 0);
+            border-radius: 4px;
+            border: 1px solid rgb(210, 210, 210);
+            margin-left: 15px;
+        }
+    }
+
+    
+}

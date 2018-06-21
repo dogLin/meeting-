@@ -1,0 +1,57 @@
+<div class="camera">
+  <div class="top">
+    <div class="font1">
+      1080P高清云台200万像素视频会议
+    </div>
+    <div class="font2">
+      摄像头管理
+    </div>
+  </div>
+  <div class="content">
+    <div class="left">
+      <div class="btn_bac">
+        <img src="/images/top_btn.png" alt="" class="top_btn" (mousedown)='move("up")' (mouseup)='stop()'>
+        <img src="/images/left_btn.png" alt="" class="left_btn" (mousedown)='move("left")' (mouseup)='stop()'>
+        <img src="/images/right_btn.png" alt="" class="right_btn" (mousedown)='move("right")' (mouseup)='stop()'>
+        <img src="/images/bottom_btn.png" alt="" class="bottom_btn" (mousedown)='move("down")' (mouseup)='stop()'>
+      </div>
+    </div>
+    <div class="right">
+      <div class="head">
+        位置设置
+      </div>
+      <mat-grid-list cols="4" rowHeight="60px">
+        <mat-grid-tile colspan="1">
+          <div>#</div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+          <div>绑定设备</div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1">
+          <div>操作</div>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="4" rowHeight="60px" *ngFor="let pos of positions, let i = index">
+        <mat-grid-tile colspan="1">
+          <div>{{pos.name}}</div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+          <div>
+            <mat-select style="width: 80%" placeholder="选择位置对应的设备" [(ngModel)]='pos.mac' (change)="deviceChange(pos, i)">
+              <mat-option *ngFor="let device of devices" [value]="device.mac" [disabled]='device.camera >= 0'>
+                {{ device.name }}
+              </mat-option>
+            </mat-select>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1">
+          <div>
+            <span (click)='setCamera(pos,i)'>设置</span>
+            <span (click)='getCamera(pos,i)'>转到</span>
+            <span (click)='clearCamera(pos,i)' class="clear">清空</span>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+</div>

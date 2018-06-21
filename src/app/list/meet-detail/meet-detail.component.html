@@ -1,0 +1,118 @@
+<div class="detail">
+  <div class="left">
+    <div class="tool">
+        <button mat-button  [routerLink] = '["/meeting"]'>
+          <i class="iconfont icon-zuo"></i>
+          返回
+        </button>
+        <button mat-button (click) = 'init()'>
+            <i class="iconfont icon-shuaxin" ></i>
+          刷新
+        </button>
+    </div>
+
+    <app-room-avatar class="avatar" [room]='meeting?.meetingRoom'></app-room-avatar>
+  </div>
+  <div class="right">
+    <div class="header">
+      <div class="title">
+        <span class="app_inline text">{{meeting?.name}}</span>
+        <span class="app_inline status">{{meeting?.status}}</span>
+        <div class="meet_info">
+          会议时间: {{meeting?.startTime | date:"yyyy-MM-dd HH:mm"}}-{{meeting?.endTime | date:'HH:mm'}} {{meeting?.minute}}分钟
+        </div>
+        <div class="meet_info">
+          会议描述: {{meeting?.desc}}
+        </div>
+        <div class="meet_info">
+          会议议题: {{meeting?.issues.join(" ")}}
+        </div>
+
+        <div class="meet_info">
+          参会人员: {{meeting?.confirmLength}}/{{meeting?.members.length}}人 确认
+        </div>
+      </div>
+      <div class="left_btn">
+          <button mat-button class="blue_btn" (click)='joinMeet()' *ngIf="!meeting?.userStatus.isJoin && meeting?.status == '预约'">确认参加</button>
+          <button mat-button class="blue_btn" (click)='cancleMeet()' *ngIf="meeting?.isStarter && meeting?.status == '预约'">取消会议</button>
+          <button mat-button class="blue_btn" [routerLink] = '["/create",meeting._id]' *ngIf="meeting?.isStarter && meeting?.status == '预约'">编辑</button>
+        <button mat-button class="blue_btn" (click)='begin()' *ngIf="meeting?.isStarter && meeting?.status == '预约' && canStart">开始会议</button>
+        <button mat-button class="blue_btn" (click)='sign()' *ngIf="meeting?.status == '进行中' && !meeting?.userStatus.isSign">签到</button>
+        <button mat-button class="blue_btn" (click)='addVote()' *ngIf="meeting?.status == '进行中' && meeting?.isStarter">发起投票</button>
+        <button mat-button [routerLink] = '["/devices"]' class="blue_btn" *ngIf="meeting?.isStarter && meeting?.status !== '已结束'">
+          设备管理
+        </button>
+        <button mat-button class="blue_btn" (click)='endMeet()' *ngIf="meeting?.isStarter && meeting?.status == '进行中'">结束会议</button>
+
+      </div>
+    </div>
+    <!-- 参会人员头像 -->
+    <div class="members">
+      <div>
+        <app-avatar type='radio' [src]='meeting?.starter.userId.avatar' [matTooltip]='"主持人：" + meeting?.starter.userId.name'></app-avatar>
+      </div>
+      <div style="display:flex">
+        <div *ngFor="let men of meeting?.members, let i =index">
+          <app-avatar type='radio' *ngIf="!men.isStarter && i < 18" [src]='men.userId.avatar' [matTooltip]='men.userId.name'></app-avatar>
+        </div>
+        <button mat-icon-button class="next" matTooltip='查看更多' (click)="showUsers()">
+          <i class="iconfont icon-you "></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- 会议纪要 -->
+    <div class="item summary">
+      <label for="summary">会议纪要:</label>
+      <textarea *ngIf="meeting?.isStarter && meeting?.status != '已结束' && meeting?.status != '已取消'" name="summary" id="summary" rows="5" [(ngModel)] = 'meeting.minutes'></textarea>
+      <div *ngIf="!meeting?.isStarter || meeting?.status == '已结束' || meeting?.status == '已取消'">{{meeting?.minutes || "无"}}</div>
+      <button *ngIf="meeting?.isStarter && meeting?.status != '已结束' && meeting?.status != '已取消'" mat-button (click) = 'modifyMinutes()'>修改</button>
+
+    </div>
+
+    <!-- 会议附件-文件上传按钮-->
+    <div class="item">
+      <label for="file">会议附件:</label>
+      <button mat-button class="file_btn" for="file" (click)='file.click()'  *ngIf="meeting?.isStarter && meeting?.status != '已结束' && meeting?.status != '已取消'">
+        <i class="iconfont icon-upload"></i>
+        <span>上传文件</span>
+      </button>
+      <input type="file" name="file" id="file" (change)='fileChange($event)' #file>
+    </div>
+
+    <!-- 会议附件-文件列表-->
+    <div class="item">
+      <label for=""></label>
+      <div>
+        <div class="file" *ngFor="let item of meeting?.files,let i = index">
+          <a target = '_blank' href="{{item.url}}" download="{{item.name}}">{{item.name}}</a>
+          <i class="iconfont icon-close" (click)='deleteFile(item,i)'  *ngIf="meeting?.isStarter && meeting?.status != '已结束' && meeting?.status != '已取消'"></i >
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <label for="">会议表决:</label>
+      <div class="votes">
+        <div *ngFor="let vote of meeting?.votes" class="vote">
+          <div>
+            <div>{{vote.name}}
+              <span class="status" [class.end_status] = 'vote.status == "已结束"'>{{vote.status}}</span>
+            </div>
+            <div *ngIf="vote.status !=='进行中' || vote.voted">
+              <div *ngFor="let item of vote.options">{{item.caption+' '}} {{item?.voter?.length}}</div>
+            </div>
+            <mat-radio-group *ngIf="vote.status =='进行中' && !vote.voted" [(ngModel)]='vote.selected'>
+              <mat-radio-button *ngFor="let item of vote.options" [value]="item._id">{{item.caption}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div style="flex-grow:1"></div>
+          <div>
+              <button class="confirm" *ngIf="vote.status =='进行中' && !vote.voted" mat-button (click)='userVote(vote)'>确认</button>
+              <button class="endVote" *ngIf="vote.status =='进行中' && meeting.isStarter" mat-button (click)='endVote(vote)'>结束表决</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

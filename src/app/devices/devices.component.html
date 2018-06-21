@@ -1,0 +1,79 @@
+<div class="device" *ngFor="let device of devices">
+  <div class="header">
+    <div class="name" [matTooltip]='device.room?"会议室:" +device.room.name:""'>
+      <i class="iconfont icon-icon-device device_icon" ></i>
+      <span>{{device.name}}</span>
+      <span class="status">{{device.onLine?"在线":"离线"}}</span>
+    </div>
+    <div class="mode " >
+      <label for="">发言模式:</label>
+      <mat-radio-group [(ngModel)]='device.mode'  (change) = 'modeChange($event)'>
+        <mat-radio-button value="0">1配1</mat-radio-button>
+        <mat-radio-button value="1">1配3</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <!-- <div class="shutup">
+      <label for="">全部禁言:</label>
+      <mat-slide-toggle [(ngModel)]='device.ifAllShutup'></mat-slide-toggle>
+    </div> -->
+
+    <div class="tone">
+        <label for="">
+          调音对象
+        </label>
+        <mat-select placeholder="选择调音模式" [(ngModel)] = 'toneOper' >
+            <mat-option  [value]="0">
+              发言单元
+            </mat-option>
+            <mat-option  [value]="1">
+                音乐通道
+              </mat-option>
+          </mat-select>
+          <mat-slider thumbLabel [(ngModel)] = 'voice' (change) = 'tone()'></mat-slider>
+    </div>
+    <div class="space"></div>
+    <div class="btn_div">
+        <button mat-button class="eq" matTooltip = '除主席台所有发言单元禁言' (click) = 'prohibit()'>
+            <span>禁言</span>
+          </button>
+        <button mat-button class="eq" matTooltip = '解除所有发言单元禁言' (click) = 'disProhibit()'>
+          <span>取消禁言</span>
+        </button>
+      <button mat-button class="eq" [routerLink] = '["/devices/eq/123"]'>
+        <i class="iconfont icon-tiaojieshezhi"></i>
+        <span>调音</span>
+      </button>
+      <button mat-button class="eq" [routerLink] = '["/devices/cameraMana"]'>
+        <i class="iconfont icon-webcam"></i>
+        <span>摄像管理</span>
+      </button>
+      <!-- <button mat-button>电源时序</button> -->
+      <button mat-button>恢复出厂</button>
+    </div>
+  </div>
+  <div class="mac_list">
+    <div class="mac" *ngFor="let mac of device.mic">
+      <div class="top">
+        <span>{{mac.name}} <span class="status" [class.onLine] = 'mac.onLine'>{{mac.onLine?"在线":"离线"}}</span></span>
+        <!-- <mat-slide-toggle [(ngModel)]='mac.open'></mat-slide-toggle> -->
+        <i class="iconfont"
+        [class.icon-mn_shengyin_fill] = 'mac.allowSpeak'
+        [class.icon-mn_shengyinwu_fill] = '!mac.allowSpeak'
+        (click) = "toggleShut(mac)"
+        ></i>
+      </div>
+      <div class="conf" (click) = 'config_mac(mac)'>
+        <i class="iconfont icon-tubiaolunkuo-" ></i>
+        <span>配置参数</span>
+      </div>
+      <div class="footer">
+
+        <span [class.con_main]="mac.isRostrum" class="appoint" (click) = 'appointROst(mac)'>
+          <i class="iconfont icon-gou"></i>
+          {{mac.isRostrum?"":'设为'}}主席台
+        </span>
+      </div>
+    </div>
+
+  </div>
+</div>
